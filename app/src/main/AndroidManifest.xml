@@ -18,7 +18,10 @@
         </activity>
         <activity android:name=".first.FirstDemoActivity" />
         <activity android:name=".second.SecondDemoActivity" />
-        <activity android:name=".third.ThirdDemoActivity"></activity>
+        <activity android:name=".third.ThirdDemoActivity" />
+        <activity
+            android:name=".fouth.FouthDemoActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
     </application>
 
 </manifest>
