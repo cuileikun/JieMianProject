@@ -1,6 +1,7 @@
 package mbcloud.com.jiemiandemo.second;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,21 @@ public class SecondDemoActivity extends AppCompatActivity {
     FragmentTabHost mTabHost;
     private String[] mTextViewArray = {"约球", "球队", "发现", "我"};
     private Class fragmentArray[] = {BorrowFragment.class, StoreFragment.class, BorrowFragment.class, HelpFragment.class};
+    // 图片
+    @DrawableRes
+    private int mNormalImages[] = {
+            R.drawable.icon_home_ball_default,
+            R.drawable.icon_home_team_default,
+            R.drawable.icon_home_find_default,
+            R.drawable.icon_home_me_default
+    };
+    @DrawableRes
+    private int mPressedImages[] = {
+            R.drawable.icon_home_ball_press,
+            R.drawable.icon_home_team_press,
+            R.drawable.icon_home_find_press,
+            R.drawable.icon_home_me_press
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +53,13 @@ public class SecondDemoActivity extends AppCompatActivity {
             public void onTabChanged(String s) {
                 for (int i = 0; i < 4; i++) {
                     if (((String) mViews[i].getTag()).equals(s)) {
-                        ((ImageView) mViews[i].findViewById(R.id.img)).setImageResource(R.drawable.tab_bq_icon_selected);
+                        ((ImageView) mViews[i].findViewById(R.id.img)).setImageResource(mPressedImages[i]);
                         ((TextView) mViews[i].findViewById(R.id.text)).setTextColor(0xff288bf0);
                     } else {
-                        ((ImageView) mViews[i].findViewById(R.id.img)).setImageResource(R.drawable.tab_bq_icon_unselected);
+                        ((ImageView) mViews[i].findViewById(R.id.img)).setImageResource(mNormalImages[i]);
                         ((TextView) mViews[i].findViewById(R.id.text)).setTextColor(0xff666666);
                     }
+
                 }
             }
         });
@@ -53,10 +70,10 @@ public class SecondDemoActivity extends AppCompatActivity {
     private View getTabItemView(int i) {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_main_tab_itme, null);
         if (i == 0) {
-            ((ImageView) view.findViewById(R.id.img)).setImageResource(R.drawable.tab_bq_icon_selected);
+            ((ImageView) view.findViewById(R.id.img)).setImageResource(mPressedImages[0]);
             ((TextView) view.findViewById(R.id.text)).setTextColor(0xff288bf0);
         } else {
-            ((ImageView) view.findViewById(R.id.img)).setImageResource(R.drawable.tab_bq_icon_unselected);
+            ((ImageView) view.findViewById(R.id.img)).setImageResource(mNormalImages[0]);
             ((TextView) view.findViewById(R.id.text)).setTextColor(0xff666666);
         }
         view.setTag(mTextViewArray[i]);
